@@ -32,14 +32,14 @@ class PostItem : AbstractItem<PostItem, PostItem.ViewHolder>() {
     }
 
     override fun bindView(viewHolder: ViewHolder, @NonNull payloads: List<Any>?) {
-        super.bindView(viewHolder, payloads)
+        super.bindView(viewHolder, payloads!!)
 
         viewHolder.title.text = title
         viewHolder.details.text = details
     }
 
     override fun unbindView(@NonNull holder: ViewHolder?) {
-        super.unbindView(holder)
+        super.unbindView(holder!!)
 
     }
 

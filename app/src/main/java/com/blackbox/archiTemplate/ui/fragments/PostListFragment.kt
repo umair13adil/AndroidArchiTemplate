@@ -3,9 +3,7 @@ package com.blackbox.archiTemplate.ui.fragments
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -16,14 +14,14 @@ import com.blackbox.archiTemplate.R
 import com.blackbox.archiTemplate.data.local.db.entity.Posts
 import com.blackbox.archiTemplate.ui.items.PostItem
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
-import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.empty_view.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 import javax.inject.Inject
 
 /**
  * Created by umair on 08/01/2018.
  */
-class PostListFragment : Fragment() {
+class PostListFragment : BaseFragment() {
 
     var TAG = PostListFragment::class.java.simpleName
 
@@ -36,54 +34,21 @@ class PostListFragment : Fragment() {
 
     companion object {
 
+        //Return new instance of this Fragment
         fun newInstance(): PostListFragment {
             return PostListFragment()
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        AndroidSupportInjection.inject(this)
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.i(TAG, "Load Posts..")
-
+        //Add custom ViewModel factory
         postsViewModel = ViewModelProviders.of(this, viewModelFactory).get(PostsViewModel::class.java)
-
-        postsViewModel.loadPosts().observe(this, Observer<List<Posts>> { posts ->
-            posts?.forEach { post ->
-                run {
-                    Log.i(TAG, post.toString())
-
-                    mAdapter.add(postsViewModel.transformToPostItem(post))
-                    mAdapter.notifyAdapterDataSetChanged()
-
-                    postsViewModel.savePost(post)
-                }
-            }
-        })
-
-
-        postsViewModel.loadSavedPosts().observe(this, Observer<List<Posts>> { posts ->
-            posts?.forEach { post ->
-                run {
-                    Log.i(TAG, "Saved: " + post.toString())
-                }
-            }
-        })
 
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?): View? {
-
-
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recycler_view, container, false)
     }
 
@@ -92,10 +57,46 @@ class PostListFragment : Fragment() {
 
         //Initialize RecyclerView with click listeners
         initRecycleView()
+
+        //Show ProgressBar
+        showLoading()
+
+        //Load posts from server
+        postsViewModel.loadPosts().observe(this, Observer<List<Posts>> { posts ->
+            posts?.forEach { post ->
+                run {
+                    Log.i(TAG, post.toString())
+
+                    //Add posts to recycler view after converting to 'PostItem'
+                    mAdapter.add(postsViewModel.transformToPostItem(post))
+                    mAdapter.notifyAdapterDataSetChanged()
+
+                    //Save posts to Database
+                    postsViewModel.savePost(post)
+                }
+            }
+
+            //Hides ProgressBar
+            hideLoading()
+
+            //This will check count of items in adapter, and will show view accordingly
+            shouldHideOrShow(mAdapter.itemCount)
+        })
+
+
+        //Load saved posts from Database
+        postsViewModel.loadSavedPosts().observe(this, Observer<List<Posts>> { posts ->
+            posts?.forEach { post ->
+                run {
+                    Log.i(TAG, "Saved: " + post.toString())
+                }
+            }
+        })
     }
 
     private fun initRecycleView() {
 
+        //Setup FastAdapter with 'PostItem'
         mAdapter = postsViewModel.setupAdapter()
 
         recycler_view.layoutManager = LinearLayoutManager(activity)
@@ -108,5 +109,28 @@ class PostListFragment : Fragment() {
             //navigateToDetails(jobItem, v.cardView, PointF(v.x, v.y))
             false
         })
+    }
+
+    private fun showLoading() {
+        if (!progress_bar.isShown)
+            progress_bar.visibility = View.VISIBLE
+
+        empty_view.visibility = View.GONE
+        swipeRefreshLayout.visibility = View.GONE
+    }
+
+    private fun hideLoading() {
+        if (progress_bar.isShown)
+            progress_bar.visibility = View.GONE
+    }
+
+    private fun shouldHideOrShow(size: Int) {
+        if (size == 0) {
+            empty_view.visibility = View.VISIBLE
+            swipeRefreshLayout.visibility = View.GONE
+        } else {
+            empty_view.visibility = View.GONE
+            swipeRefreshLayout.visibility = View.VISIBLE
+        }
     }
 }

@@ -25,7 +25,7 @@ class LiveDataCallAdapterFactory private constructor() : CallAdapter.Factory() {
         }
 
         if (observableType !is ParameterizedType) {
-            throw IllegalArgumentException("resource must be parameterized")
+            throw IllegalArgumentException("resource must be parameterize")
         }
 
         val bodyType = getParameterUpperBound(0, observableType)

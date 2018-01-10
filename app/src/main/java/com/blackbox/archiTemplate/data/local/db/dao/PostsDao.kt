@@ -21,16 +21,16 @@ interface PostsDao {
     fun getUserById(id: String): LiveData<Posts>
 
     /**
-     * Insert a posts to the database, if the posts already exist, replace it
+     * Insert a post to the database, if the post already exist, replace it
      *
-     * @param posts The posts tobe inserted
+     * @param posts The post to be inserted
      * */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPost(posts: Posts)
 
 
     /**
-     * Delete all the users from the database
+     * Delete all the posts from the database
      * */
     @Query("DELETE FROM posts")
     fun deleteAllPosts()
@@ -44,7 +44,7 @@ interface PostsDao {
     fun deletePost(posts: Posts)
 
     /**
-     * Deletes a variable number of users
+     * Deletes a variable number of posts
      * */
     @Delete
     fun deletePosts(vararg posts: Posts)

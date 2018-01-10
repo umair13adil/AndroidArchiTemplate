@@ -27,15 +27,18 @@ internal constructor(private val netDataSource: NetDataSource, var postsDataSour
         return postItem
     }
 
+    //Loads posts from server
     fun loadPosts(): LiveData<List<Posts>> {
         return netDataSource.loadPosts()
     }
 
-    fun savePost(post: Posts) {
-        postsDataSource.insertPost(post)
-    }
-
+    //Loads posts from local database
     fun loadSavedPosts(): LiveData<List<Posts>> {
         return postsDataSource.getAllPosts()
+    }
+
+    //Add post to local database
+    fun savePost(post: Posts) {
+        postsDataSource.insertPost(post)
     }
 }
