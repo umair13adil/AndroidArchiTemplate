@@ -7,7 +7,7 @@ package com.blackbox.archiTemplate.utils;
 
 public class Constants {
 
-    public static final String BASE_URL = "https://my-json-server.typicode.com/typicode/demo/";
+    public static final String BASE_URL = "https://my-json-server.typicode.com/umair13adil/AndroidArchiTemplate/";
 
     //Font Types
     public static final int FONT_ROBOTO_BLACK = 0;
