@@ -58,6 +58,16 @@ class PostListFragment : BaseFragment() {
         //Initialize RecyclerView with click listeners
         initRecycleView()
 
+        //Add pull to refresh listener
+        swipeRefreshLayout.setOnRefreshListener {
+            loadPosts()
+        }
+
+        //This will load posts from server & save to local database
+        loadPosts()
+    }
+
+    private fun loadPosts() {
         //Show ProgressBar
         showLoading()
 
@@ -112,16 +122,19 @@ class PostListFragment : BaseFragment() {
     }
 
     private fun showLoading() {
-        if (!progress_bar.isShown)
+        if (!progress_bar.isShown && !swipeRefreshLayout.isRefreshing)
             progress_bar.visibility = View.VISIBLE
 
         empty_view.visibility = View.GONE
-        swipeRefreshLayout.visibility = View.GONE
+        swipeRefreshLayout.visibility = View.VISIBLE
     }
 
     private fun hideLoading() {
         if (progress_bar.isShown)
             progress_bar.visibility = View.GONE
+
+        if (swipeRefreshLayout.isRefreshing)
+            swipeRefreshLayout.isRefreshing = false
     }
 
     private fun shouldHideOrShow(size: Int) {
