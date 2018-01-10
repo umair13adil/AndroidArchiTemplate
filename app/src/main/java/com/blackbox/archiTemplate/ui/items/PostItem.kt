@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import com.blackbox.archiTemplate.R
 import com.blackbox.archiTemplate.utils.Constants
 import com.blackbox.archiTemplate.utils.Utils
+import com.bumptech.glide.Glide
 import com.mikepenz.fastadapter.items.AbstractItem
 
 /**
@@ -21,6 +22,7 @@ class PostItem : AbstractItem<PostItem, PostItem.ViewHolder>() {
 
     var title = ""
     var details = ""
+    var image = ""
 
     override fun getType(): Int {
         return R.id.fastadapter_post_item_id
@@ -36,6 +38,10 @@ class PostItem : AbstractItem<PostItem, PostItem.ViewHolder>() {
 
         viewHolder.title.text = title
         viewHolder.details.text = details
+
+        Glide.with(viewHolder.contentView.context)
+                .load(image)
+                .into(viewHolder.image);
     }
 
     override fun unbindView(@NonNull holder: ViewHolder?) {

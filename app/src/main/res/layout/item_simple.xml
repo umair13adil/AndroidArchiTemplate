@@ -25,12 +25,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
-                android:gravity="center_vertical">
+                android:gravity="top|center_vertical">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/img"
-                    android:layout_width="@dimen/margin_30"
-                    android:layout_height="@dimen/margin_30">
+                    android:layout_width="@dimen/margin_65"
+                    android:layout_height="@dimen/margin_65"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:padding="@dimen/margin_5"
+                    app:srcCompat="@drawable/ic_user">
 
                 </android.support.v7.widget.AppCompatImageView>
 
@@ -39,10 +43,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/img"
                     android:layout_toRightOf="@+id/img"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_marginRight="@dimen/margin_5">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/txt_title"

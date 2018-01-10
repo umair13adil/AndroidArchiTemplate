@@ -2,7 +2,7 @@ package com.blackbox.archiTemplate.data.local.db.dao
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import com.blackbox.archiTemplate.data.local.db.entity.Posts
+import com.blackbox.archiTemplate.data.entity.Posts
 
 /**
  * Created by umair on 10/01/2018.

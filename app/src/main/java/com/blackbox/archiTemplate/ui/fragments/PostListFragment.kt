@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.blackbox.archiTemplate.R
-import com.blackbox.archiTemplate.data.local.db.entity.Posts
+import com.blackbox.archiTemplate.data.entity.Posts
 import com.blackbox.archiTemplate.ui.items.PostItem
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import kotlinx.android.synthetic.main.empty_view.*

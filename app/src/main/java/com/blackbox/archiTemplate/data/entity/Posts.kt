@@ -1,4 +1,4 @@
-package com.blackbox.archiTemplate.data.local.db.entity
+package com.blackbox.archiTemplate.data.entity
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -16,4 +16,12 @@ data class Posts(
         val id: Int = 0,
 
         @ColumnInfo(name = "title")
-        val title: String)
+        val title: String,
+
+        @ColumnInfo(name = "details")
+        val details: String,
+
+        @ColumnInfo(name = "image")
+        val image: String
+
+)

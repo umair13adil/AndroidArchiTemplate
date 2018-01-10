@@ -1,7 +1,7 @@
 package com.blackbox.archiTemplate.data.local.posts
 
 import android.arch.lifecycle.LiveData
-import com.blackbox.archiTemplate.data.local.db.entity.Posts
+import com.blackbox.archiTemplate.data.entity.Posts
 
 /**
  * Created by umair on 10/01/2018.

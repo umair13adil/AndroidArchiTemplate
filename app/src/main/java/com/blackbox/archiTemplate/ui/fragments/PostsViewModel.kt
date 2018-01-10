@@ -2,7 +2,7 @@ package com.blackbox.archiTemplate.ui.fragments
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import com.blackbox.archiTemplate.data.local.db.entity.Posts
+import com.blackbox.archiTemplate.data.entity.Posts
 import com.blackbox.archiTemplate.data.local.posts.PostsDataSource
 import com.blackbox.archiTemplate.data.network.NetDataSource
 import com.blackbox.archiTemplate.ui.items.PostItem
@@ -23,7 +23,8 @@ internal constructor(private val netDataSource: NetDataSource, var postsDataSour
     fun transformToPostItem(post: Posts): PostItem {
         val postItem = PostItem()
         postItem.title = post.title
-        postItem.details = post.id.toString()
+        postItem.details = post.details
+        postItem.image = post.image
         return postItem
     }
 

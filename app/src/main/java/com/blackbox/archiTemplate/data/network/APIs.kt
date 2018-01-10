@@ -1,7 +1,7 @@
 package com.blackbox.archiTemplate.data.network
 
 import android.arch.lifecycle.LiveData
-import com.blackbox.archiTemplate.data.local.db.entity.Posts
+import com.blackbox.archiTemplate.data.entity.Posts
 import retrofit2.http.GET
 
 /**

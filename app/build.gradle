@@ -91,6 +91,10 @@ dependencies {
     implementation 'com.mikepenz:fastadapter:3.0.5@aar'
     implementation 'com.mikepenz:fastadapter-commons:3.0.5@aar'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+
     //kapt
     kapt "com.google.dagger:dagger-compiler:2.14.1"
     kapt "com.google.dagger:dagger-android-processor:2.14.1"
