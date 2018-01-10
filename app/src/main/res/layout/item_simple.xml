@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/margin_4"
+    android:paddingLeft="@dimen/margin_4"
+    android:paddingRight="@dimen/margin_4"
+    android:paddingTop="@dimen/margin_4">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:transitionName="headerTransition"
+        app:cardCornerRadius="@dimen/margin_0"
+        app:cardElevation="@dimen/margin_5">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/content_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:gravity="center_vertical">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/img"
+                    android:layout_width="@dimen/margin_30"
+                    android:layout_height="@dimen/margin_30">
+
+                </android.support.v7.widget.AppCompatImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/img"
+                    android:layout_toRightOf="@+id/img"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/txt_title"
+                        style="@style/TextTitleStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical|start"
+                        android:lines="1"
+                        android:text="Title"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/txt_size_18" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/txt_detail"
+                        style="@style/TextTitleStyle.Smaller"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical|start"
+                        android:lines="1"
+                        android:text="Detail"
+                        android:textColor="@color/colorBlack"
+                        android:textStyle="normal" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
