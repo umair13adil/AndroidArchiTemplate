@@ -2,7 +2,6 @@ package com.blackbox.archiTemplate.ui.activities
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import com.blackbox.archiTemplate.R
 import com.blackbox.archiTemplate.ui.fragments.PostListFragment
 import com.blackbox.archiTemplate.utils.Common
@@ -16,7 +15,9 @@ import javax.inject.Inject
  * Created by umair on 10/01/2018.
  */
 
-class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
+class MainActivity : BaseActivity() , HasSupportFragmentInjector {
+
+    var TAG = MainActivity::class.java.simpleName
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -24,8 +25,6 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return dispatchingAndroidInjector
     }
-
-    var TAG = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
 

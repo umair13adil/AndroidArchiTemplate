@@ -8,6 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--For Detail Activity-->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorWhiteTranslucent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="scrollbarStyleVertical">
         <item name="android:scrollbarStyle">outsideOverlay</item>
         <item name="android:scrollbars">vertical</item>
@@ -24,10 +31,11 @@
     </style>
 
     <style name="TextTitleStyle.Large">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorTextDark</item>
         <item name="android:textSize">@dimen/txt_size_16</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">start</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/margin_10</item>
     </style>
 
     <style name="TextTitleStyle.Medium">
@@ -44,10 +52,11 @@
     </style>
 
     <style name="TextTitleStyle.Small">
-        <item name="android:textColor">@color/colorTextDark</item>
+        <item name="android:textColor">@color/colorTextLightDark</item>
         <item name="android:textSize">@dimen/txt_size_14</item>
         <item name="android:gravity">start</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:padding">@dimen/margin_5</item>
     </style>
 
     <style name="TextTitleStyle.Smaller">
@@ -55,6 +64,29 @@
         <item name="android:textSize">@dimen/txt_size_14</item>
         <item name="android:gravity">start</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="TransparentText">
+        <item name="android:textColor">@color/transparent_white</item>
+    </style>
+
+
+    <!--Used for Collapsing Toolbar-->
+    <style name="expandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">48sp
+        </item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="collapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

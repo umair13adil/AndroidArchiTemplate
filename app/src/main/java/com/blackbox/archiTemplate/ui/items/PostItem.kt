@@ -1,5 +1,7 @@
 package com.blackbox.archiTemplate.ui.items
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.annotation.Keep
 import android.support.annotation.NonNull
 import android.support.v7.widget.AppCompatImageView
@@ -18,11 +20,17 @@ import com.mikepenz.fastadapter.items.AbstractItem
  */
 
 @Keep
-class PostItem : AbstractItem<PostItem, PostItem.ViewHolder>() {
+class PostItem() : AbstractItem<PostItem, PostItem.ViewHolder>(),Parcelable {
 
     var title = ""
     var details = ""
     var image = ""
+
+    constructor(parcel: Parcel) : this() {
+        title = parcel.readString()
+        details = parcel.readString()
+        image = parcel.readString()
+    }
 
     override fun getType(): Int {
         return R.id.fastadapter_post_item_id
@@ -76,6 +84,26 @@ class PostItem : AbstractItem<PostItem, PostItem.ViewHolder>() {
             title.typeface = utils.setTypeface(Constants.FONT_ROBOTO_BOLD, context)
             details.typeface = utils.setTypeface(Constants.FONT_ROBOTO_REGULAR, context)
 
+        }
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(title)
+        parcel.writeString(details)
+        parcel.writeString(image)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<PostItem> {
+        override fun createFromParcel(parcel: Parcel): PostItem {
+            return PostItem(parcel)
+        }
+
+        override fun newArray(size: Int): Array<PostItem?> {
+            return arrayOfNulls(size)
         }
     }
 

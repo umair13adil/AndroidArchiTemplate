@@ -1,8 +1,13 @@
 package com.blackbox.archiTemplate.ui.fragments
 
+import android.annotation.TargetApi
+import android.app.ActivityOptions
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.graphics.PointF
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -12,10 +17,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.blackbox.archiTemplate.R
 import com.blackbox.archiTemplate.data.entity.Posts
+import com.blackbox.archiTemplate.ui.activities.DetailsActivity
 import com.blackbox.archiTemplate.ui.items.PostItem
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter
 import kotlinx.android.synthetic.main.empty_view.*
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
+import kotlinx.android.synthetic.main.item_simple.view.*
 import javax.inject.Inject
 
 /**
@@ -116,7 +123,7 @@ class PostListFragment : BaseFragment() {
 
         mAdapter.withOnClickListener({ v, adapter, item, position ->
             val jobItem = mAdapter.getAdapterItem(position)
-            //navigateToDetails(jobItem, v.cardView, PointF(v.x, v.y))
+            navigateToDetails(jobItem, v.cardView, PointF(v.x, v.y))
             false
         })
     }
@@ -145,5 +152,19 @@ class PostListFragment : BaseFragment() {
             empty_view.visibility = View.GONE
             swipeRefreshLayout.visibility = View.VISIBLE
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun navigateToDetails(postItem: PostItem, v: View, touchPoint: PointF) {
+
+        synchronized(mTransitionInformation) {
+            mTransitionInformation.rememberTransition(v, touchPoint)
+            v.visibility = View.VISIBLE
+            val options = ActivityOptions.makeSceneTransitionAnimation(activity, v, v.transitionName)
+            val intent = Intent(activity, DetailsActivity::class.java)
+            intent.putExtra(DetailsActivity.EXTRA_ITEM, postItem)
+            startActivity(intent, options.toBundle())
+        }
+
     }
 }
