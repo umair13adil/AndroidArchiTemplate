@@ -4,6 +4,9 @@
 
 A simple app to display list of Posts in RecyclerView using android new architecture implementation. 
 
+![Image1](pictures/image2.png)
+![Image2](pictures/image1.png)
+
 * Written in Kotlin
 * API calls with Retrofit2
 * Room Persistence Library used for Database

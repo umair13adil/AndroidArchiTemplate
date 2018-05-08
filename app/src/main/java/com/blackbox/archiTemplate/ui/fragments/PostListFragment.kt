@@ -123,7 +123,7 @@ class PostListFragment : BaseFragment() {
 
         mAdapter.withOnClickListener({ v, adapter, item, position ->
             val jobItem = mAdapter.getAdapterItem(position)
-            navigateToDetails(jobItem, v.cardView, PointF(v.x, v.y))
+            navigateToDetails(jobItem, v?.cardView!!, PointF(v.x, v.y))
             false
         })
     }
